@@ -18,4 +18,9 @@ class Product
   def self.from_file(file_path)
     raise NotImplementedError
   end
+
+  def left_in_stock
+    @amount -= 1
+    to_s
+  end
 end

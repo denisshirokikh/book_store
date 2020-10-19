@@ -31,4 +31,8 @@ class Book < Product
     @genre = params[:genre] if params[:genre]
     @author = params[:author] if params[:author]
   end
+
+  def left_in_stock
+    super
+  end
 end
