@@ -12,39 +12,33 @@ require_relative 'lib/book'
 require_relative 'lib/movie'
 require_relative 'lib/music'
 require_relative 'lib/product_collection'
+require_relative 'lib/cart'
 
-
-
-collection = ProductCollection.from_dir(__dir__ + '/data')
-
-# Сортируем продукты по возрастанию цены с помощью метода sort! экземпляра
-# класса ProductCollection
-collection.sort!(by: :title, order: :asc)
+collection = (ProductCollection.from_dir(__dir__ + '/data')).to_a
 
 stock = {}
 user_input = ""
-total_to_pay = 0
-items_to_bye = []
+cart = Cart.new
 until user_input == 0
   puts "Что хотите купить:"
-  collection.to_a.each_with_index do |product, index |
-    puts "#{index + 1}. #{product}"
+  collection.each_with_index do |product, index|
+    puts "#{index+1}. #{product}"
     stock[index+1] = product
   end
   puts "0. Выход"
-  user_input = STDIN.gets.to_i.abs
+  user_input = STDIN.gets.to_i
   if user_input == 0
     puts "Вы купили: "
-    items_to_bye.each {|item| puts item}
-    puts "С Вас — #{total_to_pay} руб. Спасибо за покупки!"
+    puts cart.list
+    puts "С Вас — #{cart.total_cost} руб. Спасибо за покупки!"
+  elsif user_input > collection.size || user_input < 0
+    puts "Введите коректное значение от 0 до #{collection.size}"
   else
-  stock.fetch(user_input).left_in_stock
-  puts "Вы выбрали: #{stock.fetch(user_input)}"
-  items_to_bye << stock.fetch(user_input)
-  total_to_pay += stock.fetch(user_input).price
-  puts "Всего товаров на сумму:#{total_to_pay} руб"
-  end
+    user_choice = stock.fetch(user_input)
+    cart.add_item(user_choice)
+    stock.fetch(user_input).left_in_stock
+    puts "Вы выбрали: #{user_choice}"
+    "Всего товаров на сумму:#{cart.total_cost} руб"
+    collection.delete(user_choice) if user_choice.amount.zero?
+    end
 end
-
-
-
