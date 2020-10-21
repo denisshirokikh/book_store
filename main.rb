@@ -27,8 +27,9 @@ until user_input == 0
   user_input = STDIN.gets.to_i
   if user_input == 0
     puts "**********СПИСОК ПОКУПОК**********"
-    puts cart.list
-    puts "ИТОГ — #{cart.total_cost} руб. Спасибо за покупки!"
+    cart.print_invoice
+    puts "ИТОГ — #{cart.total_cost} руб."
+    puts "********Спасибо за покупки!********"
   elsif user_input > collection.size || user_input < 0
     puts "Введите коректное значение от 0 до #{collection.size}"
   else
