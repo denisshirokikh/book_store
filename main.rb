@@ -27,7 +27,7 @@ until user_input == 0
   user_input = STDIN.gets.to_i
   if user_input == 0
     puts "**********СПИСОК ПОКУПОК**********"
-    cart.print_invoice
+    cart.print_invoice.each { |key, value| puts "#{key}   -  #{value} шт" }
     puts "ИТОГ — #{cart.total_cost} руб."
     puts "********Спасибо за покупки!********"
   elsif user_input > collection.size || user_input < 0

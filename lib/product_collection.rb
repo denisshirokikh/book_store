@@ -50,3 +50,4 @@ class ProductCollection
     self
   end
 end
+

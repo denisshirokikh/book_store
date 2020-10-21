@@ -22,6 +22,6 @@ class Cart
   end
 
   def print_invoice
-    @final_check.each_pair { |key, value| puts "#{key}   -  #{value} шт" }
+    @final_check
   end
 end

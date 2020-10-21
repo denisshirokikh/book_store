@@ -29,5 +29,4 @@ class Music < Product
   def left_in_stock
     super
   end
-
 end
