@@ -22,7 +22,6 @@ until user_input == 0
   puts "Что хотите купить:"
   collection.each_with_index do |product, index|
     puts "#{index+1}. #{product} (Остаток: #{product.amount})"
-    # stock[index+1] = product
   end
   puts "0. Выход"
   user_input = STDIN.gets.to_i
