@@ -23,7 +23,7 @@ class Music < Product
   end
 
   def to_s
-    "Альбом #{@singer} - #{@title}, #{@genre}, #{@year}, #{super}"
+    "Альбом #{@singer} - #{@title}, #{@genre}, #{@year} г., #{super}"
   end
 
   def left_in_stock

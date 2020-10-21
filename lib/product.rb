@@ -7,7 +7,7 @@ class Product
   end
 
   def to_s
-    "#{@price} руб. (осталось #{@amount})"
+    "#{@price} руб. "
   end
 
   def update(params)
